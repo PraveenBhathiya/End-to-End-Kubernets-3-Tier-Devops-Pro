@@ -1,20 +1,6 @@
-FROM node:21-alpine
-
-# Create app directory
-WORKDIR /home/node/app
-
-# Copy package files and install dependencies
+FROM node:14
+WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install --production
-
-# Bundle app source
+RUN npm install
 COPY . .
-
-# Set the user to run the app
-USER node
-
-# Expose port 4000
-EXPOSE 4000
-
-# Command to run the application
-CMD [ "node", "index.js" ]
+CMD ["node", "index.js"]
